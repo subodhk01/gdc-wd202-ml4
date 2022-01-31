@@ -1,0 +1,20 @@
+<h1>Task management</h1>
+
+<form action="{% url 'add-task' %}" method="get">
+    {% csrf_token %}
+    <input type="text" name="task" placeholder="Add new task">
+    <input type="submit" value="Add">
+</form>
+
+<br />
+
+<a href="{% url 'completed-tasks' %}">View completed tasks</a>
+
+<h2>Tasks</h2>
+{% for task in tasks %}
+<li>
+    {{ forloop.counter }}: {{ task }}
+    <a href="{% url 'delete-task' forloop.counter %}">Delete task</a>
+    <a href="{% url 'complete-task' forloop.counter %}">Complete task</a>
+</li>
+{% endfor %}
