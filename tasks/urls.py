@@ -6,19 +6,16 @@ tasks = []
 completed_tasks = []
 
 def tasks_view(request):
-    print('tasks: ', tasks)
     return render(request, 'tasks.html', {
         'tasks': tasks
     })
 
 def completed_tasks_view(request):
-    print('completed_tasks: ', completed_tasks)
     return render(request, 'completed_tasks.html', {
         'tasks': completed_tasks
     })
 
 def add_new_task(request):
-    print('request get: ', request.GET)
     tasks.append( request.GET.get('task') )
     return HttpResponseRedirect('/tasks/')
 
